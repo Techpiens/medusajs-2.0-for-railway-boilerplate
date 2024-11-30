@@ -15,7 +15,7 @@ interface Hits {
 export async function search(query: string) {
   // MeiliSearch
   const queries = [{ params: { query }, indexName: SEARCH_INDEX_NAME }]
-  const { results } = (await searchClient.search(queries)) as Record<
+  const { results } = (await searchClient.searchClient.search(queries)) as Record<
     string,
     any
   >
