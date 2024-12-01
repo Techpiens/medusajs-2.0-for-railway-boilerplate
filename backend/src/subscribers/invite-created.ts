@@ -9,6 +9,7 @@ export default async function userInviteHandler({
     container,
   }: SubscriberArgs<any>) {
 
+  console.log("TESTX - please work")
   const notificationModuleService: INotificationModuleService = container.resolve(
     Modules.NOTIFICATION,
   )

@@ -1,5 +1,6 @@
 import { sdk } from "@lib/config"
 import { cache } from "react"
+import { revalidateTag } from "next/cache"
 
 export const listCategories = cache(async function () {
   return sdk.store.category
@@ -11,6 +12,7 @@ export const getCategoriesList = cache(async function (
   offset: number = 0,
   limit: number = 100
 ) {
+  revalidateTag("categories")
   return sdk.store.category.list(
     { limit, offset },
     { next: { tags: ["categories"] } }

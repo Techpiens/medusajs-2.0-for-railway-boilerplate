@@ -5,7 +5,7 @@ import { getRegion } from "./regions"
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
 import { sortProducts } from "@lib/util/sort-products"
 import {revalidateTag} from "next/cache";
-import { getCachedProductsList } from "../../backend/rAPI/productsRAPI"
+import { getProductsListUnstableCache } from "../../backend/rAPI/productsRAPI"
 
 export const getProductsById = cache(async function ({
   ids,
@@ -31,7 +31,7 @@ export const getProductByHandle = cache(async function (
   handle: string,
   regionId: string
 ) {
-  revalidateTag("products")
+  // revalidateTag("products")
   return sdk.store.product
     .list(
       {
@@ -44,6 +44,10 @@ export const getProductByHandle = cache(async function (
     .then(({ products }) => products[0])
 })
 
+/**
+ * @deprecated
+ * Use getProductsListUnstableCache() instead.
+ */
 export const getProductsList = cache(async function ({
   pageParam = 1,
   queryParams,
@@ -118,7 +122,7 @@ export const getProductsListWithSort = cache(async function ({
 
   const {
     products, count,
-  } = await getCachedProductsList({
+  } = await getProductsListUnstableCache({
     pageParam: 0,
     queryParams: {
       ...queryParams,

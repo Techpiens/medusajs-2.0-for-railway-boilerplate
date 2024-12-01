@@ -2,7 +2,6 @@ import { Metadata } from "next"
 
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
 import StoreTemplate from "@modules/store/templates"
-import { getCachedProductsList } from "../../../../backend/rAPI/productsRAPI"
 
 export const metadata: Metadata = {
   title: "Store",
