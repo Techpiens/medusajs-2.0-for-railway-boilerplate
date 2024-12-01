@@ -9,11 +9,13 @@ import { StoreProduct } from "@medusajs/types"
 type ProductPreviewProps = {
   product: StoreProduct
   isFeatured?: boolean
+  region?: any
 }
 
 export default async function ProductPreview({
   product,
   isFeatured,
+  region = undefined,
 }: ProductPreviewProps) {
   const { cheapestPrice } = getProductPrice({ product: product })
 
