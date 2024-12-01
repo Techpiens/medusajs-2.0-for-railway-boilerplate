@@ -5,6 +5,7 @@ import { getRegion } from "./regions"
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
 import { sortProducts } from "@lib/util/sort-products"
 import {revalidateTag} from "next/cache";
+import { getCachedProductsList } from "../../backend/rAPI/productsRAPI"
 
 export const getProductsById = cache(async function ({
   ids,
@@ -116,8 +117,8 @@ export const getProductsListWithSort = cache(async function ({
   const limit = queryParams?.limit || 12
 
   const {
-    response: { products, count },
-  } = await getProductsList({
+    products, count,
+  } = await getCachedProductsList({
     pageParam: 0,
     queryParams: {
       ...queryParams,

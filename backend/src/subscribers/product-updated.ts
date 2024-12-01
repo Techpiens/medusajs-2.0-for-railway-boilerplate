@@ -1,14 +1,12 @@
-import { Modules } from '@medusajs/utils'
+import {Modules} from '@medusajs/utils'
 import {IProductModuleService, ProductDTO} from '@medusajs/types'
-import { SubscriberArgs, SubscriberConfig } from '@medusajs/medusa'
+import {SubscriberArgs, SubscriberConfig} from '@medusajs/medusa'
 import {STORE_CORS} from "lib/constants";
 
-
 export default async function productUpdatedHandler(
-  {event: { data }, container}: SubscriberArgs<{ id: string }>
+  {event: {data}, container}: SubscriberArgs<{ id: string }>,
 ) {
   const productModuleService: IProductModuleService = container.resolve(Modules.PRODUCT)
-  // revalidateTag("products")
 
   const requestUrl = `${STORE_CORS}/api/revalidate`
   console.log("TESTX - Sending product updated notification to", requestUrl)
@@ -16,8 +14,7 @@ export default async function productUpdatedHandler(
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      // add api key here
-        'x-api-key': process.env.STORE_API_KEY || '',
+      'x-api-key': process.env.STORE_API_KEY || '',
     },
     body: JSON.stringify({productId: data.id, tag: "products", path: "/[countryCode]"}), //"/[countryCode]/(main)/store"
   });
@@ -32,5 +29,5 @@ export default async function productUpdatedHandler(
 }
 
 export const config: SubscriberConfig = {
-  event: ["product.created", "product.updated", "product.deleted"]
+  event: ["product.created", "product.updated", "product.deleted"],
 }

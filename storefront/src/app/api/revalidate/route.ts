@@ -1,5 +1,6 @@
 import {NextRequest, NextResponse} from 'next/server';
 import {revalidatePath, revalidateTag} from "next/cache";
+import { testRevalidateTags } from "../../../backend/server-actions/testRevalidateTags"
 
 type Payload = {
   tag?: string | undefined;
@@ -29,6 +30,8 @@ export const POST = async (req: NextRequest) => {
     console.log("TESTX - Revalidating path", revalidatePathKey);
     revalidatePath(revalidatePathKey, "layout");
   }
+  revalidateTag("products");
+  await testRevalidateTags();
   revalidatePath('/', 'layout')
 
   return NextResponse.json({status: 'ok'});

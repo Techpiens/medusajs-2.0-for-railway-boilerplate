@@ -1,8 +1,10 @@
-import { getProductsListWithSort } from "@lib/data/products"
+import { getProductsById, getProductsListWithSort } from "@lib/data/products"
 import { getRegion } from "@lib/data/regions"
 import ProductPreview from "@modules/products/components/product-preview"
 import { Pagination } from "@modules/store/components/pagination"
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
+import { getProductPrice } from "@lib/util/get-product-price"
+import { StoreProduct, StoreRegion } from "@medusajs/types"
 
 const PRODUCT_LIMIT = 12
 
@@ -63,6 +65,7 @@ export default async function PaginatedProducts({
     sortBy,
     countryCode,
   })
+  console.log("TESTX - products", products)
 
   const totalPages = Math.ceil(count / PRODUCT_LIMIT)
 
@@ -75,7 +78,7 @@ export default async function PaginatedProducts({
         {products.map((p) => {
           return (
             <li key={p.id}>
-              <ProductPreview product={p} region={region} />
+              <ProductPreview product={p} />
             </li>
           )
         })}
