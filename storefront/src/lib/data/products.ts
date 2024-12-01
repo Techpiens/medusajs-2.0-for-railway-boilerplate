@@ -13,6 +13,7 @@ export const getProductsById = cache(async function ({
   ids: string[]
   regionId: string
 }) {
+  revalidateTag("products")
   return sdk.store.product
     .list(
       {
@@ -29,6 +30,7 @@ export const getProductByHandle = cache(async function (
   handle: string,
   regionId: string
 ) {
+  revalidateTag("products")
   return sdk.store.product
     .list(
       {
@@ -65,17 +67,18 @@ export const getProductsList = cache(async function ({
       nextPage: null,
     }
   }
-  // revalidateTag("products")
+
+  revalidateTag("products")
   return sdk.store.product
     .list(
       {
-        limit,
-        offset,
+        limit: limit,
+        offset: offset,
         region_id: region.id,
         fields: "*variants.calculated_price",
         ...queryParams,
       },
-      { next: { tags: ["products"] } }
+      { next: { tags: ["products"] } },
     )
     .then(({ products, count }) => {
       const nextPage = count > offset + limit ? pageParam + 1 : null

@@ -17,7 +17,7 @@ export async function retrieveCart() {
     return null
   }
 
-  // revalidateTag("cart")
+  revalidateTag("cart")
   return await sdk.store.cart
     .retrieve(cartId, {}, { next: { tags: ["cart"] }, ...getAuthHeaders() })
     .then(({ cart }) => cart)
@@ -365,8 +365,7 @@ export async function placeOrder() {
     .catch(medusaError)
 
   if (cartRes?.type === "order") {
-    const countryCode =
-      cartRes.order.shipping_address?.country_code?.toLowerCase()
+    const countryCode = cartRes.order.shipping_address?.country_code?.toLowerCase()
     removeCartId()
     redirect(`/${countryCode}/order/confirmed/${cartRes?.order.id}`)
   }
