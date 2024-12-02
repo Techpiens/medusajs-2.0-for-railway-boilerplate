@@ -37,6 +37,9 @@ const nextConfig = {
   },
   serverRuntimeConfig: {
     port: process.env.PORT || 3000
+  },
+  experimental: {
+    serverComponentsExternalPackages: ['pino', 'pino-pretty'],
   }
 }
 

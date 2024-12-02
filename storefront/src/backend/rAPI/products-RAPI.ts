@@ -1,8 +1,10 @@
 import "server-only"
 import { FindParams, HttpTypes, StoreProductParams } from "@medusajs/types"
 import { getRegion } from "@lib/data/regions"
-import { revalidateTag, unstable_cache } from "next/cache"
+import { unstable_cache } from "next/cache"
 import { sdk } from "@lib/config"
+import { logger } from "@lib/logger/pino-logger"
+import { CacheTags } from "../cache-tags"
 
 type QueryParams = FindParams & StoreProductParams
 
@@ -27,7 +29,7 @@ export const getProductsListUnstableCache = unstable_cache(
     queryParams,
     countryCode,
   }: GetProductsListParams): Promise<ProductsListsResponse> {
-    console.log("TESTX - getProductsListUnstableCache")
+    logger.trace(CacheTags.PRODUCTS, "getProductsListUnstableCache")
     const limit = queryParams?.limit || DEFAULT_LIMIT
     const validPageParam = Math.max(pageParam, 1)
     const offset = (validPageParam - 1) * limit
@@ -41,7 +43,6 @@ export const getProductsListUnstableCache = unstable_cache(
       }
     }
 
-    // revalidateTag("products")
     const { products, count } = await sdk.store.product.list(
       {
         limit: limit,
@@ -50,7 +51,7 @@ export const getProductsListUnstableCache = unstable_cache(
         fields: "*variants.calculated_price",
         ...queryParams,
       },
-      { next: { tags: ["products"] } }
+      { next: { tags: [CacheTags.PRODUCTS] } }
     )
 
     const nextPage = count > offset + limit ? pageParam + 1 : null
@@ -61,6 +62,6 @@ export const getProductsListUnstableCache = unstable_cache(
       queryParams: queryParams,
     }
   },
-  ["products"],
-  { revalidate: 120 },
+  [CacheTags.PRODUCTS],
+  { revalidate: false },
 )

@@ -41,6 +41,8 @@
     "medusajs-launch-utils": "^0.0.4",
     "next": "^14.2.18",
     "pg": "^8.11.3",
+    "pino": "^9.5.0",
+    "pino-pretty": "^13.0.0",
     "qs": "^6.12.1",
     "react": "^18.2.0",
     "react-country-flag": "^3.0.2",
