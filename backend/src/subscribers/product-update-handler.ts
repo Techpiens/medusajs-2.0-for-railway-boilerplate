@@ -1,12 +1,12 @@
 import {Modules} from '@medusajs/utils'
-import {IProductModuleService, ProductDTO} from '@medusajs/types'
+import {IProductModuleService} from '@medusajs/types'
 import {SubscriberArgs, SubscriberConfig} from '@medusajs/medusa'
 import {STORE_CORS} from "lib/constants";
 
-export default async function productUpdatedHandler(
+export default async function productUpdateHandler(
   {event: {data}, container}: SubscriberArgs<{ id: string }>,
 ) {
-  const productModuleService: IProductModuleService = container.resolve(Modules.PRODUCT)
+  // const productModuleService: IProductModuleService = container.resolve(Modules.PRODUCT)
 
   const requestUrl = `${STORE_CORS}/api/revalidate`
   console.log("TESTX - Sending product updated notification to", requestUrl)
