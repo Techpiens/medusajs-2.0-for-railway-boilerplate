@@ -3,6 +3,9 @@ import medusaError from "@lib/util/medusa-error"
 import { cache } from "react"
 import { HttpTypes } from "@medusajs/types"
 
+/**
+ * @deprecated
+ */
 export const listRegions = cache(async function () {
   return sdk.store.region
     .list({}, { next: { tags: ["regions"] } })
@@ -10,6 +13,9 @@ export const listRegions = cache(async function () {
     .catch(medusaError)
 })
 
+/**
+ * @deprecated
+ */
 export const retrieveRegion = cache(async function (id: string) {
   return sdk.store.region
     .retrieve(id, {}, { next: { tags: ["regions"] } })
@@ -19,6 +25,9 @@ export const retrieveRegion = cache(async function (id: string) {
 
 const regionMap = new Map<string, HttpTypes.StoreRegion>()
 
+/**
+ * @deprecated
+ */
 export const getRegion = cache(async function (countryCode: string) {
   try {
     if (regionMap.has(countryCode)) {

@@ -1,7 +1,7 @@
 import { sdk } from "@lib/config"
 import { cache } from "react"
-import { getProductsList } from "./products"
 import { HttpTypes } from "@medusajs/types"
+import { getProductsListUnstableCache } from "../../backend/rAPI/products-RAPI"
 
 export const retrieveCollection = cache(async function (id: string) {
   return sdk.store.collection
@@ -38,12 +38,12 @@ export const getCollectionsWithProducts = cache(
       .map((collection) => collection.id)
       .filter(Boolean) as string[]
 
-    const { response } = await getProductsList({
+    const { products } = await getProductsListUnstableCache({
       queryParams: { collection_id: collectionIds },
       countryCode,
     })
 
-    response.products.forEach((product) => {
+    products.forEach((product) => {
       const collection = collections.find(
         (collection) => collection.id === product.collection_id
       )

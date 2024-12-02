@@ -7,7 +7,10 @@ import { logger } from "@lib/logger/pino-logger"
 
 export const listRegionsUnstableCache = unstable_cache(
   async function () {
-    logger.trace(CacheTags.REGIONS, "listRegionsUnstableCache")
+    logger.trace({
+      tag: CacheTags.REGIONS,
+      function: "listRegionsUnstableCache",
+    })
     return sdk.store.region
       .list({}, { next: { tags: [CacheTags.REGIONS] } })
       .then(({ regions }) => regions)
@@ -19,19 +22,25 @@ export const listRegionsUnstableCache = unstable_cache(
 
 export const retrieveRegionUnstableCache = unstable_cache(
   async function (id: string) {
-    logger.trace(CacheTags.REGIONS, "retrieveRegionUnstableCache")
+    logger.trace({
+      tag: CacheTags.REGIONS,
+      function: "retrieveRegionUnstableCache",
+    })
     return sdk.store.region
       .retrieve(id, {}, { next: { tags: ["regions"] } })
       .then(({ region }) => region)
       .catch(medusaError)
   },
   [CacheTags.REGIONS],
-  { revalidate: false },
+  { revalidate: false }
 )
 
 export const getRegionUnstableCache = unstable_cache(
   async function (countryCode: string) {
-    logger.trace(CacheTags.REGIONS, "getRegionUnstableCache")
+    logger.trace({
+      tag: CacheTags.REGIONS,
+      function: "getRegionUnstableCache",
+    })
     try {
       const regionMap = new Map<string, StoreRegion>()
       const regions = await listRegionsUnstableCache()
@@ -52,5 +61,5 @@ export const getRegionUnstableCache = unstable_cache(
     }
   },
   [CacheTags.REGIONS],
-  { revalidate: false },
+  { revalidate: false }
 )

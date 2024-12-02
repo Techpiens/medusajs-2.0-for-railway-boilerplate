@@ -21,9 +21,6 @@ type Params = {
 export default async function StorePage({ searchParams, params }: Params) {
   const { sortBy, page } = searchParams
 
-  // console.log("params123", params)
-  // const test = await getCachedProductsList({pageParam: 1, queryParams: {limit: 12}, countryCode: params.countryCode})
-  // console.log("test123", test)
   return (
     <StoreTemplate
       sortBy={sortBy}

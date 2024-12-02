@@ -1,10 +1,8 @@
-import { getProductsById, getProductsListWithSort } from "@lib/data/products"
-import { getRegion } from "@lib/data/regions"
 import ProductPreview from "@modules/products/components/product-preview"
 import { Pagination } from "@modules/store/components/pagination"
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
-import { getProductPrice } from "@lib/util/get-product-price"
-import { StoreProduct, StoreRegion } from "@medusajs/types"
+import { getProductsListWithSortUnstableCache } from "../../../backend/rAPI/products-RAPI"
+import { getRegionUnstableCache } from "../../../backend/rAPI/regions-RAPI"
 
 const PRODUCT_LIMIT = 12
 
@@ -51,21 +49,18 @@ export default async function PaginatedProducts({
     queryParams["order"] = "created_at"
   }
 
-  const region = await getRegion(countryCode)
+  const region = await getRegionUnstableCache(countryCode)
 
   if (!region) {
     return null
   }
 
-  let {
-    response: { products, count },
-  } = await getProductsListWithSort({
-    page,
-    queryParams,
-    sortBy,
-    countryCode,
+  let { products, count} = await getProductsListWithSortUnstableCache({
+    pageParam: page,
+    queryParams: queryParams,
+    sortBy: sortBy,
+    countryCode: countryCode,
   })
-  // console.log("TESTX - products", products)
 
   const totalPages = Math.ceil(count / PRODUCT_LIMIT)
 

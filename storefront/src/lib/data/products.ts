@@ -2,10 +2,7 @@ import { sdk } from "@lib/config"
 import { HttpTypes } from "@medusajs/types"
 import { cache } from "react"
 import { getRegion } from "./regions"
-import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
-import { sortProducts } from "@lib/util/sort-products"
 import {revalidateTag} from "next/cache";
-import { getProductsListUnstableCache } from "../../backend/rAPI/products-RAPI"
 
 export const getProductsById = cache(async function ({
   ids,
@@ -27,7 +24,11 @@ export const getProductsById = cache(async function ({
     .then(({ products }) => products)
 })
 
-export const getProductByHandle = cache(async function (
+/**
+ * @deprecated
+ * Use getProductsListUnstableCache() instead.
+ */
+/*export const getProductByHandle = cache(async function (
   handle: string,
   regionId: string
 ) {
@@ -42,13 +43,13 @@ export const getProductByHandle = cache(async function (
       { next: { tags: ["products"] } }
     )
     .then(({ products }) => products[0])
-})
+})*/
 
 /**
  * @deprecated
  * Use getProductsListUnstableCache() instead.
  */
-export const getProductsList = cache(async function ({
+/*export const getProductsList = cache(async function ({
   pageParam = 1,
   queryParams,
   countryCode,
@@ -97,12 +98,14 @@ export const getProductsList = cache(async function ({
         queryParams,
       }
     })
-})
+})*/
 
 /**
+ * @deprecated
  * This will fetch 100 products to the Next.js cache and sort them based on the sortBy parameter.
  * It will then return the paginated products based on the page and limit parameters.
  */
+/*
 export const getProductsListWithSort = cache(async function ({
   page = 0,
   queryParams,
@@ -148,3 +151,4 @@ export const getProductsListWithSort = cache(async function ({
     queryParams,
   }
 })
+*/

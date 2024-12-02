@@ -1,7 +1,7 @@
 import Product from "../product-preview"
-import { getRegion } from "@lib/data/regions"
-import { getProductsList } from "@lib/data/products"
 import { HttpTypes } from "@medusajs/types"
+import { getRegionUnstableCache } from "../../../../backend/rAPI/regions-RAPI"
+import { getProductsListUnstableCache } from "../../../../backend/rAPI/products-RAPI"
 
 type RelatedProductsProps = {
   product: HttpTypes.StoreProduct
@@ -20,7 +20,7 @@ export default async function RelatedProducts({
   product,
   countryCode,
 }: RelatedProductsProps) {
-  const region = await getRegion(countryCode)
+  const region = await getRegionUnstableCache(countryCode)
 
   if (!region) {
   const queryParams: StoreProductParamsWithTags = {}
@@ -42,11 +42,11 @@ export default async function RelatedProducts({
   }
   queryParams.is_giftcard = false
 
-  const products = await getProductsList({
+  const products = await getProductsListUnstableCache({
     queryParams,
     countryCode,
-  }).then(({ response }) => {
-    return response.products.filter(
+  }).then(({ products }) => {
+    return products.filter(
       (responseProduct) => responseProduct.id !== product.id
     )
   })
