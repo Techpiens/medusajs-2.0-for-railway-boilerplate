@@ -32,4 +32,7 @@ export default async function productUpdatedHandler(
 
 export const config: SubscriberConfig = {
   event: ["product.created", "product.updated", "product.deleted"],
-}
+  context: {
+    subscriberId: "productUpdatedHandler",
+  },
+} satisfies SubscriberConfig

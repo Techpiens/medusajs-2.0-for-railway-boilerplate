@@ -5,7 +5,6 @@ import RefinementList from "@modules/store/components/refinement-list"
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
 
 import PaginatedProducts from "./paginated-products"
-import RevalidateTestButton from "@modules/store/templates/RevalidateTestButton"
 
 const StoreTemplate = ({
   sortBy,
@@ -28,7 +27,6 @@ const StoreTemplate = ({
       <div className="w-full">
         <div className="mb-8 text-2xl-semi">
           <h1 data-testid="store-page-title">All products</h1>
-          <RevalidateTestButton/>
         </div>
         <Suspense fallback={<SkeletonProductGrid />}>
           <PaginatedProducts
