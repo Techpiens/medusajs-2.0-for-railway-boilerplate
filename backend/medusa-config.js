@@ -19,8 +19,10 @@ import {
   MINIO_ENDPOINT,
   MINIO_ACCESS_KEY,
   MINIO_SECRET_KEY,
-  MINIO_BUCKET
+  MINIO_BUCKET,
+  STORE_API_KEY
 } from 'lib/constants';
+import {STOREFRONT_NOTIFIER_MODULE} from "modules/revalidation";
 
 loadEnv(process.env.NODE_ENV, process.cwd());
 
@@ -66,6 +68,14 @@ const medusaConfig = {
             }
           }])
         ]
+      }
+    },
+    {
+      key: STOREFRONT_NOTIFIER_MODULE,
+      resolve: './modules/revalidation',
+      options: {
+        store_api_key: STORE_API_KEY,
+        store_cors: STORE_CORS,
       }
     },
     ...(REDIS_URL ? [{

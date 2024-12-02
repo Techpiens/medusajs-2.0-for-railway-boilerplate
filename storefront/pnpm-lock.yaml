@@ -22,14 +22,14 @@ importers:
         specifier: ^2.0.7
         version: 2.0.7(react@18.3.1)
       '@medusajs/js-sdk':
-        specifier: preview
-        version: 2.0.8-preview-20241130120153(awilix@8.0.1)
+        specifier: ^2.0.7
+        version: 2.0.7(awilix@8.0.1)
       '@medusajs/types':
-        specifier: preview
-        version: 2.0.8-preview-20241130120153(awilix@8.0.1)
+        specifier: ^2.0.7
+        version: 2.0.7(awilix@8.0.1)
       '@medusajs/ui':
-        specifier: preview
-        version: 4.0.1-preview-20241025150152(@types/react-dom@18.3.1)(@types/react@18.2.42)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2)
+        specifier: ^4.0.1
+        version: 4.0.1(@types/react-dom@18.3.1)(@types/react@18.2.42)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2)
       '@meilisearch/instant-meilisearch':
         specifier: ^0.22.0
         version: 0.22.0
@@ -494,22 +494,17 @@ packages:
   '@medusajs/client-types@0.2.12-preview-20240505115807':
     resolution: {integrity: sha512-f7T/7WUAGOFfsNsjdCcVoWLlAqryaQB+hF0v/Dzst2hv+PdJGqHfHwTNdeK3ZYhUwzSQ8YdnCYsj9OEJR9SPiQ==}
 
-  '@medusajs/icons@2.0.1-preview-20241025150152':
-    resolution: {integrity: sha512-8tO3ZBcuHOX0iwe/qb2tvWb5GsKB+Yc/JaLkPumuVOkRIbkgHJcTvF1VwWrr3B2xiJsx6yRV1NQEXPYWh/coxg==}
-    peerDependencies:
-      react: ^16.x || ^17.x || ^18.x
-
   '@medusajs/icons@2.0.7':
     resolution: {integrity: sha512-YP/S5zm17CxHKnupZ/cOFcMyr5V/BnQr8qEqUDPx3xFNP3RandU3JdioFT7/54TLoTUYqFv4bMYoGFvSwM5hsA==}
     peerDependencies:
       react: ^16.x || ^17.x || ^18.x
 
-  '@medusajs/js-sdk@2.0.8-preview-20241130120153':
-    resolution: {integrity: sha512-P1KDJYEXEOMRRVdGJPNKSDRJlImgJCN/sU3o7XPGSW5NHSvN4u2oKCYdpMTjQl635McgYWV93kUIW3pnBjfj5g==}
+  '@medusajs/js-sdk@2.0.7':
+    resolution: {integrity: sha512-gLJ58C79/X0R7tOsK8FWoeg5wLriiYPPmAmevPojF2pws28aYtWT3hWWpsKb0KoeV415TmCkFleg7oxgCfk3EA==}
     engines: {node: '>=20'}
 
-  '@medusajs/types@2.0.8-preview-20241130120153':
-    resolution: {integrity: sha512-Yy133L+AMsoVt8r5/PsGLCVJAXkZz35LS1ZPfglIjcgYqVdLzzvqcpWfX3yamWdA21NM5qk1LR6mXcYupLZ2Fg==}
+  '@medusajs/types@2.0.7':
+    resolution: {integrity: sha512-q9fqYNlGiw02qXNzuVP2YupTJBw0r5imXCkWK+oUUtMqOggic8pW4XgYV+oU+XHibBTDa5awlc9dUl5ALjvoew==}
     engines: {node: '>=20'}
     peerDependencies:
       awilix: ^8.0.1
@@ -526,8 +521,8 @@ packages:
     peerDependencies:
       tailwindcss: '>=3.0.0'
 
-  '@medusajs/ui@4.0.1-preview-20241025150152':
-    resolution: {integrity: sha512-Co7YYUxSc4Yh67cAH2f7WfDTu9sYLHyf0Pvtrv1edQwuL5p1WzoN+FdZ8fl1fB3H7QYAcpYyAZwpsZ9uzmzOBQ==}
+  '@medusajs/ui@4.0.1':
+    resolution: {integrity: sha512-UO90AD9T1+QN24OEWN2PpuUhueCFr2hEu0S2mZx5VvBb3AooOkQYPxfTRDoL4dNK+L9X9nUFpaJP6wsAPx9vLg==}
     peerDependencies:
       react: ^18.0.0
       react-dom: ^18.0.0
@@ -4173,17 +4168,13 @@ snapshots:
 
   '@medusajs/client-types@0.2.12-preview-20240505115807': {}
 
-  '@medusajs/icons@2.0.1-preview-20241025150152(react@18.3.1)':
-    dependencies:
-      react: 18.3.1
-
   '@medusajs/icons@2.0.7(react@18.3.1)':
     dependencies:
       react: 18.3.1
 
-  '@medusajs/js-sdk@2.0.8-preview-20241130120153(awilix@8.0.1)':
+  '@medusajs/js-sdk@2.0.7(awilix@8.0.1)':
     dependencies:
-      '@medusajs/types': 2.0.8-preview-20241130120153(awilix@8.0.1)
+      '@medusajs/types': 2.0.7(awilix@8.0.1)
       fetch-event-stream: 0.1.5
       qs: 6.13.1
     transitivePeerDependencies:
@@ -4191,7 +4182,7 @@ snapshots:
       - ioredis
       - vite
 
-  '@medusajs/types@2.0.8-preview-20241130120153(awilix@8.0.1)':
+  '@medusajs/types@2.0.7(awilix@8.0.1)':
     dependencies:
       awilix: 8.0.1
       bignumber.js: 9.1.2
@@ -4202,9 +4193,9 @@ snapshots:
       tailwindcss: 3.4.15
       tailwindcss-animate: 1.0.7(tailwindcss@3.4.15)
 
-  '@medusajs/ui@4.0.1-preview-20241025150152(@types/react-dom@18.3.1)(@types/react@18.2.42)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2)':
+  '@medusajs/ui@4.0.1(@types/react-dom@18.3.1)(@types/react@18.2.42)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2)':
     dependencies:
-      '@medusajs/icons': 2.0.1-preview-20241025150152(react@18.3.1)
+      '@medusajs/icons': 2.0.7(react@18.3.1)
       '@radix-ui/react-accordion': 1.2.0(@types/react-dom@18.3.1)(@types/react@18.2.42)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/react-alert-dialog': 1.1.1(@types/react-dom@18.3.1)(@types/react@18.2.42)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/react-avatar': 1.1.0(@types/react-dom@18.3.1)(@types/react@18.2.42)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)

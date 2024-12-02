@@ -18,14 +18,16 @@ export default async function productUpdatedHandler(
     },
     body: JSON.stringify({productId: data.id, tag: "products", path: "/[countryCode]"}), //"/[countryCode]/(main)/store"
   });
-  console.log("TESTX - Product updated response", result)
 
-  try {
+  // TODO error handling
+  // console.log("TESTX - Product updated response", result)
+
+ /* try {
     const product: ProductDTO = await productModuleService.retrieveProduct(data.id)
     console.log("TESTX - Product updated", product)
   } catch (error) {
     console.error('TESTX - Error sending product updated notification:', error)
-  }
+  }*/
 }
 
 export const config: SubscriberConfig = {

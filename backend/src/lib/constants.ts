@@ -52,6 +52,14 @@ export const STORE_CORS = assertValue(
 )
 
 /**
+ * Store/frontend API key
+ */
+export const STORE_API_KEY = assertValue(
+  process.env.STORE_API_KEY,
+  'Environment variable for STORE_API_KEY is not set',
+)
+
+/**
  * JWT Secret used for signing JWT tokens
  */
 export const JWT_SECRET = assertValue(
